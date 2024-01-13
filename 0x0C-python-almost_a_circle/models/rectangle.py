@@ -7,7 +7,7 @@ from base import Base
 
 class Rectangle(Base):
     """
-    Rectangle class that inherits from base class
+    Rectangle class that inherits from the base class
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
@@ -31,7 +31,7 @@ class Rectangle(Base):
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
-            raise TypeError("width must be > 0")
+            raise ValueError("width must be > 0")
         self.__width = value
 
     @property
@@ -43,7 +43,7 @@ class Rectangle(Base):
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
-            raise TypeError("height must be > 0")
+            raise ValueError("height must be > 0")
         self.__height = value
 
     @property
@@ -53,7 +53,7 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         if value < 0:
-            raise TypeError("x must be >= 0")
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
@@ -63,7 +63,7 @@ class Rectangle(Base):
     @y.setter
     def y(self, value):
         if value < 0:
-            raise TypeError("y must be >= 0")
+            raise ValueError("y must be >= 0")
         self.__y = value
 
     def area(self):
@@ -81,3 +81,14 @@ class Rectangle(Base):
 
         for _ in range(self.__height):
             print(" " * self.__x + "#" * self.__width)
+
+    def update(self, *args):
+        """
+        Assign arguments to attributes based on their position.
+        """
+        if args:
+            attributes = ["id", "width", "height", "x", "y"]
+
+            for i, attr in enumerate(attributes):
+                if i < len(args):
+                    setattr(self, attr, args[i])
