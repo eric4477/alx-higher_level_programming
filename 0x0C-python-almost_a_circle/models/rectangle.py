@@ -114,3 +114,13 @@ class Rectangle(Base):
                     self.__y = value
                 else:
                     break
+
+    def to_dictionary(self):
+        rect_dict = {
+            "id": self.id,
+            "width": self.__width,
+            "height": self.__height,
+            "x": self.__x,
+            "y": self.__y
+        }
+        return rect_dict
